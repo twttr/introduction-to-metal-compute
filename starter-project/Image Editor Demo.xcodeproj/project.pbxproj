@@ -3,10 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		05D87D692BA091AF0005202D /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 05D87D682BA091AF0005202D /* Shaders.metal */; };
+		05D87D6B2BA0964D0005202D /* Adjustments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D87D6A2BA0964D0005202D /* Adjustments.swift */; };
+		05D87D6D2BA09FFC0005202D /* TextureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D87D6C2BA09FFC0005202D /* TextureManager.swift */; };
 		18316C78263088B600397C84 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 18316C77263088B600397C84 /* SnapKit */; };
 		189498522631C19F0011E57B /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189498512631C19F0011E57B /* UIViewController+Extensions.swift */; };
 		1894985F2631C4720011E57B /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1894985E2631C4720011E57B /* NavigationBar.swift */; };
@@ -21,6 +24,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		05D87D682BA091AF0005202D /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
+		05D87D6A2BA0964D0005202D /* Adjustments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Adjustments.swift; sourceTree = "<group>"; };
+		05D87D6C2BA09FFC0005202D /* TextureManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextureManager.swift; sourceTree = "<group>"; };
 		189498512631C19F0011E57B /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		1894985E2631C4720011E57B /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
 		189498772631D5290011E57B /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
@@ -69,6 +75,8 @@
 			isa = PBXGroup;
 			children = (
 				18DF81E82639A90D00D88D10 /* ColorConversion.h */,
+				05D87D682BA091AF0005202D /* Shaders.metal */,
+				05D87D6A2BA0964D0005202D /* Adjustments.swift */,
 			);
 			path = Shaders;
 			sourceTree = "<group>";
@@ -94,6 +102,7 @@
 			children = (
 				18C8899A26307BFB00B126F6 /* AppDelegate.swift */,
 				18C8899C26307BFB00B126F6 /* SceneDelegate.swift */,
+				05D87D6C2BA09FFC0005202D /* TextureManager.swift */,
 				18C8899E26307BFB00B126F6 /* ViewController.swift */,
 				18DF81E62639939D00D88D10 /* ViewController+Picker.swift */,
 				1894985E2631C4720011E57B /* NavigationBar.swift */,
@@ -136,8 +145,9 @@
 		18C8898F26307BFB00B126F6 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1240;
-				LastUpgradeCheck = 1240;
+				LastUpgradeCheck = 1530;
 				TargetAttributes = {
 					18C8899626307BFB00B126F6 = {
 						CreatedOnToolsVersion = 12.4;
@@ -183,11 +193,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05D87D692BA091AF0005202D /* Shaders.metal in Sources */,
 				1894985F2631C4720011E57B /* NavigationBar.swift in Sources */,
 				189498522631C19F0011E57B /* UIViewController+Extensions.swift in Sources */,
+				05D87D6B2BA0964D0005202D /* Adjustments.swift in Sources */,
 				18C8899F26307BFB00B126F6 /* ViewController.swift in Sources */,
 				18DF81E72639939D00D88D10 /* ViewController+Picker.swift in Sources */,
 				18C8899B26307BFB00B126F6 /* AppDelegate.swift in Sources */,
+				05D87D6D2BA09FFC0005202D /* TextureManager.swift in Sources */,
 				18C8899D26307BFB00B126F6 /* SceneDelegate.swift in Sources */,
 				189498782631D5290011E57B /* UIImage+Extensions.swift in Sources */,
 			);
@@ -244,6 +257,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -305,6 +319,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;

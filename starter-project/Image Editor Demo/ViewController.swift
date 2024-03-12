@@ -9,12 +9,30 @@ class ViewController: UIViewController {
     private let picker = UIImagePickerController()
     private let settings = SettingsTableViewController()
     private let imageView: UIImageView
+    
+    private let device: MTLDevice
+    private let commandQueue: MTLCommandQueue
+    private let textureManager: TextureManager
+    private let adjustments: Adjustments
+    private var texturePair: (source: MTLTexture, destination: MTLTexture)?
+    
+    enum Error: Swift.Error {
+        case commandQueueCreationFailed
+    }
 
     // MARK: - Init
-
-    init() {
+    
+    init(device: MTLDevice) throws {
+        let library = try device.makeDefaultLibrary(bundle: .main)
+        guard let commandQueue = device.makeCommandQueue() else { throw Error.commandQueueCreationFailed }
+        
+        self.device = device
+        self.commandQueue = commandQueue
         self.imageView = .init()
+        self.adjustments = try .init(library: library)
+        self.textureManager = .init(device: device)
         super.init(nibName: nil, bundle: nil)
+        
         self.commonInit()
     }
     
@@ -42,11 +60,17 @@ class ViewController: UIViewController {
             FloatSetting(name: "Temperature",
                          defaultValue: .zero,
                          min: -1,
-                         max: 1) { _ in },
+                         max: 1) {
+                self.adjustments.temperature = $0
+                self.redraw()
+            },
             FloatSetting(name: "Tint",
                          defaultValue: .zero,
                          min: -1,
-                         max: 1) { _ in }
+                         max: 1) {
+                self.adjustments.tint = $0
+                self.redraw()
+            },
         ]
         
         guard let settingsView = self.settings.view
@@ -81,6 +105,24 @@ class ViewController: UIViewController {
     }
 
     // MARK: - Actions
+    
+    private func redraw() {
+        guard let source = self.texturePair?.source else { return }
+        guard let destination = self.texturePair?.destination else { return }
+        guard let commandBuffer = self.commandQueue.makeCommandBuffer() else { return }
+        
+        self.adjustments.encode(source: source, destination: destination, in: commandBuffer)
+        
+        commandBuffer.addCompletedHandler { _ in
+        guard let cgImage = try? self.textureManager.cgImage(from: destination) else { return }
+        
+            DispatchQueue.main.async {
+                self.imageView.image = UIImage(cgImage: cgImage)
+            }
+        }
+        
+        commandBuffer.commit()
+    }
 
     @objc
     private func share() {
@@ -111,8 +153,12 @@ class ViewController: UIViewController {
     }
 
     func handlePickedImage(image: UIImage) {
-        guard let cgImage = image.cgImage
-        else { return }
+        guard let cgImage = image.cgImage else { return }
+        guard let source = try? self.textureManager.texture(from: cgImage) else { return }
+        guard let destination = try? self.textureManager.matchingTexture(to: source) else { return }
+        
+        self.texturePair = (source, destination)
         self.imageView.image = .init(cgImage: cgImage)
+        self.redraw()
     }
 }
