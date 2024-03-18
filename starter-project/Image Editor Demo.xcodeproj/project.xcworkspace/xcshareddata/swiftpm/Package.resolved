@@ -1,25 +1,60 @@
 {
-  "object": {
-    "pins": [
-      {
-        "package": "SettingsViewController",
-        "repositoryURL": "https://github.com/eugenebokhan/settings-view-controller.git",
-        "state": {
-          "branch": null,
-          "revision": "f1286e820afc82ba451de2c104ec57f514415382",
-          "version": "0.2.4"
-        }
-      },
-      {
-        "package": "SnapKit",
-        "repositoryURL": "https://github.com/SnapKit/SnapKit.git",
-        "state": {
-          "branch": null,
-          "revision": "d458564516e5676af9c70b4f4b2a9178294f1bc6",
-          "version": "5.0.1"
-        }
+  "originHash" : "eec60f265ea8d8c1a04d3534d5673ef418d4247e45d147f60e91527b7b45d01b",
+  "pins" : [
+    {
+      "identity" : "alloy",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/s1ddok/Alloy.git",
+      "state" : {
+        "revision" : "d0d3172e946bfabaf01883d4f84cb804c5d43fd6",
+        "version" : "0.18.2"
       }
-    ]
-  },
-  "version": 1
+    },
+    {
+      "identity" : "metal-tools",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/eugenebokhan/metal-tools.git",
+      "state" : {
+        "revision" : "7505d1789eb114b6e6e87bcf311bc1b5e404af2d",
+        "version" : "1.1.0"
+      }
+    },
+    {
+      "identity" : "settings-view-controller",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/eugenebokhan/settings-view-controller.git",
+      "state" : {
+        "revision" : "f1286e820afc82ba451de2c104ec57f514415382",
+        "version" : "0.2.4"
+      }
+    },
+    {
+      "identity" : "snapkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SnapKit/SnapKit.git",
+      "state" : {
+        "revision" : "d458564516e5676af9c70b4f4b2a9178294f1bc6",
+        "version" : "5.0.1"
+      }
+    },
+    {
+      "identity" : "swiftmath",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SwiftGFX/SwiftMath.git",
+      "state" : {
+        "revision" : "13a224a655cbef1ef0e39d7d22e31a4ff6bc9937",
+        "version" : "3.3.1"
+      }
+    },
+    {
+      "identity" : "texture-view",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/eugenebokhan/texture-view",
+      "state" : {
+        "revision" : "1dc3674d82376b26b12bc272be71091ff64923cf",
+        "version" : "1.0.2"
+      }
+    }
+  ],
+  "version" : 3
 }

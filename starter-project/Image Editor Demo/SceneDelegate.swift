@@ -9,7 +9,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
         self.window = .init(frame: windowScene.coordinateSpace.bounds)
         self.window?.windowScene = windowScene
-        self.window?.rootViewController = try? ViewController(device: MTLCreateSystemDefaultDevice()!).wrappedInNavigation()
+        self.window?.rootViewController = try? ViewController(context: .init()).wrappedInNavigation()
         self.window?.makeKeyAndVisible()
     }
     
